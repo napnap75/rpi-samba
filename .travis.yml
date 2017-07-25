@@ -15,12 +15,13 @@ install:
 
 # Load the necessary files
 before_script:
-  - https://github.com/dperson/samba
+  - git clone https://github.com/dperson/samba
   - cd samba
+  - patch Dockerfile ../Dockerfile.patch
   
 # Build and test the image
 script:
-  - docker build -t napnap75/rpi-samba:latest -f Dockerfile.armhf .
+  - docker build -t napnap75/rpi-samba:latest .
   - docker images
 
 # If successful, push the images
